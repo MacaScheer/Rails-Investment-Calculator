@@ -5,12 +5,13 @@ class InvestmentsController < ApplicationController
   end
     
     def create
-        @investment = Investment.new(investment_params)
-        if @investment
-            render :show
-        else
-            render json: @investment.errors.full_messages, status: 422
-        end
+        render json: params
+        # @investment = Investment.new(investment_params)
+        # if @investment
+        #     render :show
+        # else
+        #     render json: @investment.errors.full_messages, status: 422
+        # end
     end
 
     def index
@@ -20,6 +21,11 @@ class InvestmentsController < ApplicationController
 
     def update
     end
+
+    def show
+        render json: params
+    end
+    
 
     def calculate
         @total = params[:principal] * (1 + (params[:rate] * params[:num_years]))
