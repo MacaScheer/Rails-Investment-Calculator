@@ -5,14 +5,12 @@ class InvestmentsController < ApplicationController
 #   end
     
     def create
-        render json: params
-        debugger
         @investment = Investment.new(investments_params)
-        debugger
         if @investment
             total = Investment.calculate(investments_params[:principal], investments_params[:num_years], investments_params[:interest_rate])
-            debugger
-            @investment.total = total
+            @investment[:total] = total
+            # debugger
+            # render json: @investment
             render :show
         else
             render json: @investment.errors.full_messages, status: 422
@@ -20,6 +18,7 @@ class InvestmentsController < ApplicationController
     end
 
     def index
+        debugger
         # Investment.where(user_id: params[:user_id])
         render json: "index action in investments controller"
     end

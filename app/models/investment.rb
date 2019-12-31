@@ -6,8 +6,6 @@ belongs_to :user
 #calculate total here?
 
     def self.calculate(principal, num_years, investment_rate)
-        debugger
         @total = principal.to_f * (1 + (investment_rate.to_f * num_years.to_f))
-        debugger
     end
 end
