@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   #   resources :investments, only: [:create, :index, :show, :update, :destroy]
   # end
   # resources :investments
-  get 'investment/new', to: 'investments#new', as: 'new_investment'
-  get 'investments', to:'investments#index', as: 'investments_index'
-  get 'investments/:id', to: 'investment#show', as: 'investment_show'
-  get 'investments/:id', to: 'investment#update', as: 'investment_update'
-  get 'investments/:id', to: 'investment#edit', as: 'investment_edit'
+  get '/investments/new', to: 'investments#new', as: 'new_investment'
+  get '/investments', to:'investments#index', as: 'investments_index'
+  get '/investments/:id', to: 'investments#show', as: 'investment_show'
+  post '/investments', to: 'investments#create'
+  patch '/investments/:id', to: 'investments#update'
+  put '/investments/:id', to: 'investments#update'
+  put '/investments/:id/calculate', to: 'investments#calculate', as: 'investment_calculate'
 
 
 end
