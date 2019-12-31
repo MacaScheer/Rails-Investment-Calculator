@@ -1,17 +1,22 @@
 class InvestmentsController < ApplicationController
 
-  def new 
-    @investment = Investment.new
-  end
+#   def new 
+#     @investment = Investment.new
+#   end
     
     def create
         render json: params
-        # @investment = Investment.new(investment_params)
-        # if @investment
-        #     render :show
-        # else
-        #     render json: @investment.errors.full_messages, status: 422
-        # end
+        debugger
+        @investment = Investment.new(investments_params)
+        debugger
+        if @investment
+            total = Investment.calculate(investments_params[:principal], investments_params[:num_years], investments_params[:interest_rate])
+            debugger
+            @investment.total = total
+            render :show
+        else
+            render json: @investment.errors.full_messages, status: 422
+        end
     end
 
     def index
@@ -26,13 +31,11 @@ class InvestmentsController < ApplicationController
         render json: params
     end
     
-
-    def calculate
-        @total = params[:principal] * (1 + (params[:rate] * params[:num_years]))
-    end
+# should this go in view or model?
+  
 
     private
     def investments_params
-        params.require(:investment).permit(:num_years, :company_name, :principal, :rate, :user_id)
+        params.require(:investment).permit(:user_id, :company, :principal, :interest_rate, :num_years)
     end
 end

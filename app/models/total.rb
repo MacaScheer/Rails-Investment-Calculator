@@ -5,4 +5,6 @@ class Total < ApplicationRecord
     belongs_to :user,
     through: :investment,
     source: :user
+    
+    #calculate total here?
 end
