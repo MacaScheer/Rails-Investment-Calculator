@@ -18,6 +18,7 @@ class InvestmentsController < ApplicationController
     end
 
     def index
+        
         debugger
         # Investment.where(user_id: params[:user_id])
         render json: "index action in investments controller"
