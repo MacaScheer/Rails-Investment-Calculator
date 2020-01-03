@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_03_183711) do
+ActiveRecord::Schema.define(version: 2020_01_03_194144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 2020_01_03_183711) do
     t.string "company", null: false
     t.integer "principal", null: false
     t.float "interest_rate", null: false
-    t.float "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "num_years", null: false
+    t.float "initial_total", null: false
+    t.float "new_total"
     t.index ["user_id"], name: "index_investments_on_user_id"
   end
 

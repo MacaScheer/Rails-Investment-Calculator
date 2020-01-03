@@ -12,15 +12,22 @@ User.destroy_all
 Investment.destroy_all
 Total.destroy_all
 
-user = User.create!(name: 'Tom Philips', password: 'password123')
 
-30.times do |i|
-    investment = Investment.create!(
-        user_id: user.id, 
-        company: Faker::Company.name, 
-        principal: Faker::Number.number(digits:4),
-        interest_rate: Faker::Number.decimal(l_digits:0,r_digits:3),
-        num_years: Faker::Number.number(digits:2)
-        )
-    investment.save!
-end
+    user = User.create!(name: 'Tom Phillips', password: 'password123')
+
+    30.times do |x|
+        comp = Faker::Company.name
+        princ = Faker::Number.number(digits:4)
+        int_r = Faker::Number.decimal(l_digits:0,r_digits:3)
+        n_y = Faker::Number.number(digits:2)
+        tots = princ * (1 + (int_r * n_y))
+        investment = Investment.create!(
+            user_id: user.id,
+            company: comp, 
+            principal: princ,
+            interest_rate: int_r,
+            num_years: n_y,
+            initial_total: tots
+            )
+        investment.save!
+    end
