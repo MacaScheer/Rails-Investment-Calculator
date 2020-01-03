@@ -1,12 +1,14 @@
 class InvestmentsController < ApplicationController
-
+require 'date'
 #   def new 
 #     @investment = Investment.new
 #   end
     
     def create
         @investment = Investment.new(investments_params)
+        @investment.save!
         if @investment
+           
             total = Investment.calculate(investments_params[:principal], investments_params[:num_years], investments_params[:interest_rate])
             @investment[:total] = total
             # debugger
@@ -18,7 +20,7 @@ class InvestmentsController < ApplicationController
     end
 
     def index
-        
+        @time_now = Date.now
         debugger
         # Investment.where(user_id: params[:user_id])
         render json: "index action in investments controller"
@@ -28,6 +30,12 @@ class InvestmentsController < ApplicationController
     end
 
     def show
+        @time_now = DateTime.now
+         # start_date = @investment[:created_at]
+            # today = DateTime.now
+            # diff = ((today - start_date).to_i / 365).to_i
+            # num_years = @investment[:num_years] + diff
+            # debugger
         render json: params
     end
     

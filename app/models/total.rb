@@ -2,9 +2,9 @@ class Total < ApplicationRecord
     belongs_to :investment,
     dependent: :destroy
 
-    belongs_to :user,
-    through: :investment,
-    source: :user
+    # belongs_to :user,
+    # through: :investment,
+    # source: :user
     
     #calculate total here?
 end

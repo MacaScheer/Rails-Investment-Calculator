@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   patch '/investments/:id', to: 'investments#update'
   put '/investments/:id', to: 'investments#update'
   put '/investments/:id/calculate', to: 'investments#calculate', as: 'investment_calculate'
-
+  # post '/users'
+ resource :session, only: [:new, :create, :destroy]
+ resources :users, only: [:new, :create, :show, :update]
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_31_223808) do
+ActiveRecord::Schema.define(version: 2020_01_03_183711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 2019_12_31_223808) do
     t.string "company", null: false
     t.integer "principal", null: false
     t.float "interest_rate", null: false
-    t.integer "num_years", null: false
     t.float "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "num_years", null: false
     t.index ["user_id"], name: "index_investments_on_user_id"
   end
 
@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 2019_12_31_223808) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest"
-    t.string "session_token"
+    t.string "session_token", null: false
+    t.string "password_digest", null: false
     t.index ["name"], name: "index_users_on_name"
-    t.index ["session_token"], name: "index_users_on_session_token"
+    t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 
 end

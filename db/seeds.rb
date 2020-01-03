@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+
+User.destroy_all
+Investment.destroy_all
+Total.destroy_all
+
+user = User.create!(name: 'Tom Philips', password: 'password123')
+
+30.times do |i|
+    investment = Investment.create!(
+        user_id: user.id, 
+        company: Faker::Company.name, 
+        principal: Faker::Number.number(digits:4),
+        interest_rate: Faker::Number.decimal(l_digits:0,r_digits:3),
+        num_years: Faker::Number.number(digits:2)
+        )
+    investment.save!
+end

@@ -1,0 +1,22 @@
+<% action = (investment.persisted? ? user_url(investment) : users_url %>
+<% method = (investment.persisted? ? "patch" : "post") %>
+<% message = (investment.persisted? ? "Update Investment" : "Create Investment")%>
+
+<form action="<%=action %>" method="post">
+<input type="hidden" name="_method" value="<%= method %>">
+<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+
+<br />
+<label for="company name">Company Name</label>
+<input type="text" name="investment[company]" id="investment_company">
+<br />
+<label for="Principal">Principal</label>
+<input type="text" name="investment[principal]" id="investment_principal">
+<br />
+<label for="Number of Years">Number of Years</label>
+<input type="text" name="investment[num_years]" id="investment_num_years">
+<br />
+<label for="Interest Rate">Interest Rate</label>
+<input type="text" name="investment[interest_rate]" id="investment_interest_rate">
+<input type="submit" value="<%= message%>">
+</form>
